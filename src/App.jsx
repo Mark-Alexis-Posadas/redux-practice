@@ -1,6 +1,11 @@
+import Todo from "./Todo/Todo";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <Todo />
+    </div>
+  );
 };
 
 export default App;
-  
