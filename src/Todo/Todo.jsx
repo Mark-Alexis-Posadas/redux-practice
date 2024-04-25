@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "./todoSlice";
+import { deleteTodo } from "./todoSlice";
 import TodoItem from "./TodoItem";
 
 export default function Todo() {
@@ -18,6 +19,9 @@ export default function Todo() {
       setInputValue(""); // Clear input after adding todo
     }
   };
+  const handleDelete = (index) => {
+    dispatch(deleteTodo(index));
+  };
 
   return (
     <div>
@@ -25,7 +29,12 @@ export default function Todo() {
       <button onClick={handleAddTodo}>Add Todo</button>
       <ul>
         {todos.map((todo, idx) => (
-          <TodoItem key={idx} todo={todo} idx={idx} />
+          <TodoItem
+            key={idx}
+            todo={todo}
+            idx={idx}
+            handleDelete={handleDelete}
+          />
         ))}
       </ul>
     </div>

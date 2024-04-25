@@ -1,11 +1,4 @@
-import { useDispatch } from "react-redux";
-import { deleteTodo } from "./todoSlice";
-export default function TodoItem({ todo, idx }) {
-  const dispatch = useDispatch();
-
-  const handleDelete = (index) => {
-    dispatch(deleteTodo(index));
-  };
+export default function TodoItem({ todo, idx, handleDelete }) {
   return (
     <li>
       {todo.text}
