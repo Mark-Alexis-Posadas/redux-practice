@@ -6,12 +6,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartCount from "./cartCountSlice.js";
 import todo from "../src/Todo/todoSlice.js";
-import { filterByCategory } from "./Filter/FilterByCategorySlice.js";
+
+import filterByCategoryReducer from "./Filter/FilterByCategorySlice.js"; // Adjusted import
+
 const store = configureStore({
   reducer: {
     cartCount: cartCount,
     todo: todo,
-    filterByCategory: filterByCategory,
+    filterByCategory: filterByCategoryReducer, // Adjusted the reducer name
   },
 });
 
