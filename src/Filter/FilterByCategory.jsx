@@ -28,15 +28,14 @@ export default function FilterByCategory() {
             className="form-check-input"
             checked={selectedCategories.includes(text.category)}
             onChange={() => {
-              setSelectedCategories((prevSelectedCategories) => {
-                const updatedCategories = prevSelectedCategories.includes(
-                  text.category
-                )
-                  ? prevSelectedCategories.filter((c) => c !== text.category)
-                  : [...prevSelectedCategories, text.category];
-                handleToggleCategory(updatedCategories);
-                return updatedCategories;
-              });
+              const updatedCategories = selectedCategories.includes(
+                text.category
+              )
+                ? selectedCategories.filter((c) => c !== text.category)
+                : [...selectedCategories, text.category];
+
+              setSelectedCategories(updatedCategories);
+              handleToggleCategory(updatedCategories);
             }}
           />
           {text.category}
