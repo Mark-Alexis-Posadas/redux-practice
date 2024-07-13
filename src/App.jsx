@@ -1,9 +1,9 @@
-import FilterByCategory from "./Filter/FilterByCategory";
+import Todo from "./Todo/Todo";
 
 const App = () => {
   return (
     <div>
-      <FilterByCategory />
+      <Todo />
     </div>
   );
 };

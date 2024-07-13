@@ -41,7 +41,7 @@ const filterCategorySlice = createSlice({
 });
 
 export const selectFilteredProducts = (state) => {
-  const { products, selectedCategories } = state.filterByCategory; // Adjusted this line
+  const { products, selectedCategories } = state.filterByCategory;
   return selectedCategories.length > 0
     ? products.filter((product) =>
         selectedCategories.includes(product.category)
