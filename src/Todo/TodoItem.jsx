@@ -4,7 +4,10 @@ export default function TodoItem({ todo, idx, handleDelete, handleEdit }) {
       {todo.text}
 
       <div className="flex items-center gap-3">
-        <button className="text-blue-500" onClick={handleEdit}>
+        <button
+          className="text-blue-500"
+          onClick={() => handleEdit(idx, todo.text)}
+        >
           Edit
         </button>
         <button onClick={() => handleDelete(idx)} className="text-red-500">
