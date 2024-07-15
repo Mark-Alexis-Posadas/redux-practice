@@ -6,7 +6,7 @@ import {
   editTodo,
   toggleModal,
   toggleModalCancel,
-} from "./todoSlice";
+} from "../features/todo/todoSlice";
 
 import TodoItem from "./TodoItem";
 import TodoModal from "./TodoModal";
@@ -14,31 +14,15 @@ import TodoModal from "./TodoModal";
 export default function Todo() {
   const [inputValue, setInputValue] = useState("");
   const [modalInput, setModalInput] = useState("");
+
   const dispatch = useDispatch();
 
   //variables
   const todos = useSelector((state) => state.todo.todos);
   const isModalShow = useSelector((state) => state.todo.isModalShow);
-  const todoIndex = useSelector((state) => state.todo.todoIndex);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
-  };
-
-  const handleEditChange = (e) => {
-    setModalInput(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const handleEditSubmit = (e) => {
-    e.preventDefault();
-    dispatch(editTodo({ index: todoIndex, newText: modalInput }));
-    dispatch(toggleModal());
-    setModalInput("");
-  };
-
-  const handleEditCancel = () => {
-    dispatch(toggleModalCancel());
   };
 
   const handleAddTodo = () => {
@@ -90,12 +74,7 @@ export default function Todo() {
         ))}
       </ul>
       {isModalShow && (
-        <TodoModal
-          handleEditSubmit={handleEditSubmit}
-          handleEditChange={handleEditChange}
-          handleEditCancel={handleEditCancel}
-          modalInput={modalInput}
-        />
+        <TodoModal modalInput={modalInput} setModalInput={setModalInput} />
       )}
     </div>
   );

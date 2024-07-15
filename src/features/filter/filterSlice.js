@@ -30,7 +30,7 @@ const initialState = {
   selectedCategories: [],
 };
 
-const filterCategorySlice = createSlice({
+export const filterCategorySlice = createSlice({
   name: "filterByCategory",
   initialState,
   reducers: {

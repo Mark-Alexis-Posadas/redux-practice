@@ -6,7 +6,7 @@ const initialState = {
   todoIndex: null,
 };
 
-const todoSlice = createSlice({
+export const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
@@ -19,8 +19,14 @@ const todoSlice = createSlice({
       state.todos[index].text = newText;
     },
 
+    submitEditTodo: (state, action) => {
+      state.todos;
+    },
+
     deleteTodo: (state, action) => {
-      state.todos = state.todos.filter((_, idx) => idx !== action.payload);
+      const index = action.payload;
+
+      state.todos = state.todos.filter((_, idx) => idx !== index);
     },
 
     toggleModal: (state) => {

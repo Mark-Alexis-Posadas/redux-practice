@@ -4,7 +4,7 @@ const initialState = {
   value: 0,
 };
 
-const cartCountSlice = createSlice({
+export const cartCountSlice = createSlice({
   name: "cartCount",
   initialState,
   reducers: {
