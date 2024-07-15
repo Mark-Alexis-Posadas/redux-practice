@@ -4,8 +4,8 @@ import { todoSlice } from "../features/todo/todoSlice";
 import { filterCategorySlice } from "../features/filter/filterSlice";
 export const store = configureStore({
   reducer: {
-    cartCount: cartCountSlice,
-    todo: todoSlice,
-    filterByCategory: filterCategorySlice,
+    cartCount: cartCountSlice.reducer,
+    todo: todoSlice.reducer,
+    filterByCategory: filterCategorySlice.reducer,
   },
 });

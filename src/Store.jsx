@@ -1,5 +1,9 @@
 import { useDispatch } from "react-redux";
-import { increment, decrement, incrementByAmount } from "./cartCountSlice";
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+} from "./features/counter/counterSlice";
 
 export default function Store() {
   const dispatch = useDispatch();

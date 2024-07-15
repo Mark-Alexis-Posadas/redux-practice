@@ -1,3 +1,4 @@
+import FilterByCategory from "./Filter/FilterByCategory";
 import Todo from "./Todo/Todo";
 
 const App = () => {
