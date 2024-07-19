@@ -23,8 +23,6 @@ export const todoSlice = createSlice({
       state.todos[index] = newText;
       state.editIndex = null;
       state.isModalShow = false;
-      state.isModalShow = false;
-
       // const { index, newText } = action.payload;
       // if (index >= 0 && index < state.todos.length) {
       //   state.todos[index] = newText;
