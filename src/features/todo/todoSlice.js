@@ -20,14 +20,20 @@ export const todoSlice = createSlice({
 
     submitEditTodo: (state, action) => {
       const { index, newText } = action.payload;
-      if (index >= 0 && index < state.todos.length) {
-        state.todos[index] = newText;
-        state.editIndex = null;
-        state.isModalShow = false;
-      } else {
-        console.error(`Invalid todo index: ${index}`);
-      }
+      state.todos[index] = newText;
+      state.editIndex = null;
       state.isModalShow = false;
+      state.isModalShow = false;
+
+      // const { index, newText } = action.payload;
+      // if (index >= 0 && index < state.todos.length) {
+      //   state.todos[index] = newText;
+      //   state.editIndex = null;
+      //   state.isModalShow = false;
+      // } else {
+      //   console.error(`Invalid todo index: ${index}`);
+      // }
+      // state.isModalShow = false;
     },
 
     toggleModalEdit: (state) => {
