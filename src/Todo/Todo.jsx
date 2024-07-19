@@ -33,7 +33,7 @@ export default function Todo() {
 
   const handleEditTodo = (index, text) => {
     dispatch(toggleModalEdit());
-    dispatch(editTodo(index));
+    dispatch(editTodo({ index }));
     setModalTextInput(text);
   };
 
