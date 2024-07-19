@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   todos: [],
   isModalShow: false,
-  todoIndex: null,
+  editIndex: null,
 };
 
 export const todoSlice = createSlice({
-  name: "todo",
+  name: "todos",
   initialState,
   reducers: {
     addTodo: (state, action) => {
@@ -15,31 +15,38 @@ export const todoSlice = createSlice({
     },
 
     editTodo: (state, action) => {
-      const { index, newText } = action.payload;
-      state.todos[index].text = newText;
+      state.editIndex = action.payload.index;
     },
 
     submitEditTodo: (state, action) => {
-      state.todos;
+      const { index, newText } = action.payload;
+      if (index >= 0 && index < state.todos.length) {
+        state.todos[index] = newText;
+        state.editIndex = null;
+        state.isModalShow = false;
+      } else {
+        console.error(`Invalid todo index: ${index}`);
+      }
+      state.isModalShow = false;
+    },
+
+    toggleModalEdit: (state) => {
+      state.isModalShow = true;
     },
 
     deleteTodo: (state, action) => {
       const index = action.payload;
-
       state.todos = state.todos.filter((_, idx) => idx !== index);
-    },
-
-    toggleModal: (state) => {
-      state.isModalShow = !state.isModalShow;
-    },
-
-    toggleModalCancel: (state) => {
-      state.isModalShow = false;
     },
   },
 });
 
-export const { addTodo, deleteTodo, editTodo, toggleModal, toggleModalCancel } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  editTodo,
+  deleteTodo,
+  toggleModalEdit,
+  submitEditTodo,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;

@@ -4,77 +4,90 @@ import {
   addTodo,
   deleteTodo,
   editTodo,
-  toggleModal,
-  toggleModalCancel,
+  submitEditTodo,
+  toggleModalEdit,
 } from "../features/todo/todoSlice";
 
 import TodoItem from "./TodoItem";
 import TodoModal from "./TodoModal";
 
 export default function Todo() {
-  const [inputValue, setInputValue] = useState("");
-  const [modalInput, setModalInput] = useState("");
-
+  const [todoText, setTodoText] = useState("");
+  const [modalTextInput, setModalTextInput] = useState("");
   const dispatch = useDispatch();
 
-  //variables
-  const todos = useSelector((state) => state.todo.todos);
-  const isModalShow = useSelector((state) => state.todo.isModalShow);
-
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-  };
+  //initial state
+  const todos = useSelector((state) => state.todos.todos);
+  const editModal = useSelector((state) => state.todos.isModalShow);
+  const editIndex = useSelector((state) => state.todos.editIndex);
 
   const handleAddTodo = () => {
-    if (inputValue.trim() !== "") {
-      dispatch(addTodo({ text: inputValue, completed: false }));
-      setInputValue("");
-      return; //stop execution when true
+    if (todoText.trim() !== "") {
+      dispatch(addTodo(todoText.trim()));
+      setTodoText("");
+      return;
     }
 
-    alert("please add todo");
+    alert("please input todo");
   };
 
-  const handleDelete = (index) => {
+  const handleEditTodo = (index, text) => {
+    dispatch(toggleModalEdit());
+    dispatch(editTodo(index));
+    setModalTextInput(text);
+  };
+
+  const handleDeleteTodo = (index) => {
     dispatch(deleteTodo(index));
   };
 
-  const handleEdit = (index, newText) => {
-    dispatch(toggleModal());
-    dispatch(editTodo({ index, newText }));
-    setModalInput(newText);
+  const handleSubmit = () => {
+    dispatch(
+      submitEditTodo({
+        index: editIndex,
+        newText: modalTextInput,
+      })
+    );
+    setModalTextInput("");
   };
 
   return (
-    <div className="p-10 bg-gray-50 relative">
+    <div className="w-[700px] p-10 bg-gray-50]">
+      <h1 className="font-bold text-xl mb-10">Todo list app reducer</h1>
       <div className="flex items-center gap-3">
         <input
+          onChange={(e) => setTodoText(e.target.value)}
+          value={todoText}
           type="text"
-          value={inputValue}
-          onChange={handleChange}
-          className="border border-slate-50 rounded p-2 bg-slate-200 flex-1"
           placeholder="add todo"
+          className="bg-slate-50 p-2 border border-slate-50 flex-1"
         />
         <button
-          className="text-white bg-blue-600 rounded p-2"
+          className="text-white rounded p-2 bg-orange-300 hover:bg-orange-400"
           onClick={handleAddTodo}
         >
-          Add Todo
+          add todo
         </button>
       </div>
+
       <ul>
-        {todos.map((todo, idx) => (
+        {todos.map((todo, index) => (
           <TodoItem
-            key={idx}
+            index={index}
+            key={index}
             todo={todo}
-            idx={idx}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
+            handleEditTodo={handleEditTodo}
+            handleDeleteTodo={handleDeleteTodo}
           />
         ))}
       </ul>
-      {isModalShow && (
-        <TodoModal modalInput={modalInput} setModalInput={setModalInput} />
+
+      {editModal && (
+        <TodoModal
+          modalTextInput={modalTextInput}
+          setModalTextInput={setModalTextInput}
+          handleSubmit={handleSubmit}
+        />
       )}
     </div>
   );

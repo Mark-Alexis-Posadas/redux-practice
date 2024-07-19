@@ -5,7 +5,7 @@ import { filterCategorySlice } from "../features/filter/filterSlice";
 export const store = configureStore({
   reducer: {
     cartCount: cartCountSlice.reducer,
-    todo: todoSlice.reducer,
+    todos: todoSlice.reducer,
     filterByCategory: filterCategorySlice.reducer,
   },
 });

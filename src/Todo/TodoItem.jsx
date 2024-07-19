@@ -1,16 +1,24 @@
-export default function TodoItem({ todo, idx, handleDelete, handleEdit }) {
+export default function TodoItem({
+  todo,
+  index,
+  handleEditTodo,
+  handleDeleteTodo,
+}) {
   return (
     <li className="flex items-center justify-between p-2 border border-slate-200 rounded my-2">
-      {todo.text}
+      {todo}
 
       <div className="flex items-center gap-3">
         <button
           className="text-blue-500"
-          onClick={() => handleEdit(idx, todo.text)}
+          onClick={() => handleEditTodo(index, todo)}
         >
           Edit
         </button>
-        <button onClick={() => handleDelete(idx)} className="text-red-500">
+        <button
+          onClick={() => handleDeleteTodo(index)}
+          className="text-red-500"
+        >
           Delete
         </button>
       </div>
