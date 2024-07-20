@@ -35,13 +35,14 @@ export default function Todo() {
 
   const handleAddTodo = (e) => {
     if (existTodo) {
-      // Show an alert or a message indicating that the todo already exists
       alert("Todo already exists");
       return;
     }
+
     if (todoText.includes(e.target.value)) {
       console.log("test");
     }
+
     if (todoText.trim() !== "") {
       dispatch(addTodo(todoText.trim()));
       setTodoText("");
