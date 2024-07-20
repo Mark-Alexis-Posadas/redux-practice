@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  customIncrement,
   decrement,
   increment,
   reset,
@@ -22,10 +23,15 @@ export default function Counter() {
     dispatch(reset());
   };
 
+  const handleCustomIncrement = () => {
+    dispatch(customIncrement(2));
+  };
+
   return (
     <div>
       <h1 className="text-4xl font-bold">{count}</h1>
 
+      <button onClick={handleCustomIncrement}>Custom increment</button>
       <div className="flex items-center gap-3 mt-5">
         <button
           className="text-white p-2 rounded bg-blue-500"

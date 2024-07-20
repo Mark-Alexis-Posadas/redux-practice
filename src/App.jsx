@@ -1,9 +1,9 @@
-import Counter from "./components/Counter/Counter";
+import Tab from "./components/Tab/Tab";
 
 const App = () => {
   return (
     <div className="text-center flex justify-center">
-      <Counter />
+      <Tab />
     </div>
   );
 };
