@@ -4,6 +4,7 @@ const initialState = {
   todos: [],
   isModalShow: false,
   editIndex: null,
+  isExist: false,
 };
 
 export const todoSlice = createSlice({
@@ -12,6 +13,7 @@ export const todoSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       state.todos.push(action.payload);
+      state.isExist = false;
     },
 
     editTodo: (state, action) => {
@@ -42,6 +44,10 @@ export const todoSlice = createSlice({
       const index = action.payload;
       state.todos = state.todos.filter((_, idx) => idx !== index);
     },
+
+    checkTodoExistence: (state, action) => {
+      state.isExist = state.todos.includes(action.payload);
+    },
   },
 });
 
@@ -51,6 +57,7 @@ export const {
   deleteTodo,
   toggleModalEdit,
   submitEditTodo,
+  checkTodoExistence,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
