@@ -1,8 +1,9 @@
-import Todo from "./Todo/Todo";
+import Counter from "./components/Counter/Counter";
+
 const App = () => {
   return (
     <div className="text-center flex justify-center">
-      <Todo />
+      <Counter />
     </div>
   );
 };

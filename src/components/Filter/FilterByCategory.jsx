@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   toggleCategory,
   selectFilteredProducts,
-} from "../features/filter/filterSlice";
+} from "../../features/filter/filterSlice";
 
 export default function FilterByCategory() {
   const [selectedCategories, setSelectedCategories] = useState([]);

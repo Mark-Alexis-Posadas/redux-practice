@@ -7,7 +7,7 @@ import {
   submitEditTodo,
   toggleModalEdit,
   checkTodoExistence,
-} from "../features/todo/todoSlice";
+} from "../../features/todo/todoSlice";
 
 import TodoItem from "./TodoItem";
 import TodoModal from "./TodoModal";
