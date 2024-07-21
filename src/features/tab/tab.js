@@ -21,6 +21,7 @@ const initialState = {
     },
   ],
   isActive: 0,
+  isToggleTheme: false,
 };
 
 export const tabSlice = createSlice({
@@ -31,9 +32,13 @@ export const tabSlice = createSlice({
     setIsActive: (state, action) => {
       state.isActive = action.payload;
     },
+
+    setIsToggleTheme: (state) => {
+      state.isToggleTheme = !state.isToggleTheme;
+    },
   },
 });
 
-export const { setIsActive } = tabSlice.actions;
+export const { setIsActive, setIsToggleTheme } = tabSlice.actions;
 
 export default tabSlice.reducer;
