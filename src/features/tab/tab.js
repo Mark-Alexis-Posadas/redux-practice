@@ -2,6 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tabText: ["Home", "About", "Blog", "Contact"],
+  tabContent: [
+    {
+      id: 1,
+      content: "Home page",
+    },
+    {
+      id: 2,
+      content: "About page",
+    },
+    {
+      id: 3,
+      content: "Blog page",
+    },
+    {
+      id: 4,
+      content: "Contact page",
+    },
+  ],
   isActive: 0,
 };
 
