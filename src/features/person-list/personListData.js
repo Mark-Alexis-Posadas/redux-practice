@@ -87,8 +87,17 @@ const initialState = {
 export const personListSlice = createSlice({
   initialState,
   name: "personList",
+  isModalOpen: false,
+  reducers: {
+    openModal: (state) => {
+      state.isModalOpen = true;
+    },
+
+    closeModal: (state) => {
+      state.isModalOpen = false;
+    },
+  },
 });
 
-// export const { increment, decrement, reset, customIncrement } =
-//   counterSlice.actions;
+export const { openModal, closeModal } = personListSlice.actions;
 export default personListSlice.reducer;
