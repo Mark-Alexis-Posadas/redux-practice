@@ -3,11 +3,13 @@ import { counterSlice } from "../features/counter/counterSlice";
 import { todoSlice } from "../features/todo/todoSlice";
 import { filterCategorySlice } from "../features/filter/filterSlice";
 import { tabSlice } from "../features/tab/tab";
+import { personListSlice } from "../features/person-list/personListData";
 export const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
     todos: todoSlice.reducer,
     filterByCategory: filterCategorySlice.reducer,
     tab: tabSlice.reducer,
+    personList: personListSlice.reducer,
   },
 });

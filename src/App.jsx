@@ -1,9 +1,9 @@
-import Tab from "./components/Tab/Tab";
+import PersonList from "./components/PersonList/PersonList";
 
 const App = () => {
   return (
-    <div className="text-center flex justify-center">
-      <Tab />
+    <div className="p-10">
+      <PersonList />
     </div>
   );
 };
