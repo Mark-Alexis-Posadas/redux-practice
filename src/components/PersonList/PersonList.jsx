@@ -6,6 +6,7 @@ export default function PersonList() {
   const dispatch = useDispatch();
   const personList = useSelector((state) => state.personList.personListData);
   const isModalOpen = useSelector((state) => state.personList.isModalOpen);
+  const inputData = useSelector((state) => state.personList.inputData);
   return (
     <>
       <table className="w-full">
@@ -27,7 +28,7 @@ export default function PersonList() {
         </tbody>
       </table>
 
-      {isModalOpen && <Modal dispatch={dispatch} />}
+      {isModalOpen && <Modal dispatch={dispatch} inputData={inputData} />}
     </>
   );
 }
