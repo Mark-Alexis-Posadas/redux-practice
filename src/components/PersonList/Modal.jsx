@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Form from "./Form";
 
-export default function Modal({ dispatch, inputData }) {
+export default function Modal({ dispatch }) {
   return (
     <div className="fixed top-0 left-0 bg-[rgba(0,0,0,0.4)] w-full h-full flex items-center justify-center">
       <div className="bg-white p-2 rounded w-[900px]">
