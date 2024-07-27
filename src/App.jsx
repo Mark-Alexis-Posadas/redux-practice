@@ -1,9 +1,9 @@
-import PersonList from "./components/PersonList/PersonList";
+import UserManagement from "./components/UserManangement";
 
 const App = () => {
   return (
     <div className="p-10">
-      <PersonList />
+      <UserManagement />
     </div>
   );
 };
