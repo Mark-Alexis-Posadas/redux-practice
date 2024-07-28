@@ -25,6 +25,7 @@ export const userManagementSlice = createSlice({
     },
     closeModal: (state) => {
       state.isToggleModal = false;
+      state.editIndex = null;
     },
 
     add: (state) => {
