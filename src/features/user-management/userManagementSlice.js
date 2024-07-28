@@ -6,6 +6,7 @@ const initialState = {
   role: "",
   phoneNumber: "",
   address: "",
+  editIndex: null,
   isToggleModal: false,
   isEditing: false,
   submittedUser: [],
@@ -28,15 +29,37 @@ export const userManagementSlice = createSlice({
 
     add: (state) => {
       state.isEditing = false;
+      state.name = "";
+      state.email = "";
+      state.role = "";
+      state.phoneNumber = "";
+      state.address = "";
     },
 
-    edit: (state) => {
+    toggleEdit: (state, action) => {
+      const index = action.payload;
       state.isEditing = true;
-      console.log(state.isEditing);
+      state.editIndex = index;
+      const userToEdit = state.submittedUser[index];
+      state.name = userToEdit.name;
+      state.email = userToEdit.email;
+      state.role = userToEdit.role;
+      state.phoneNumber = userToEdit.phoneNumber;
+      state.address = userToEdit.address;
     },
+
+    // handleEdit: (state, action) => {
+    //   const { index, newValue } = action.payload;
+    //   state.submittedUser[index] = newValue;
+    // },
 
     handleSubmitUser: (state, action) => {
-      state.submittedUser.push(action.payload);
+      if (state.isEditing) {
+        state.submittedUser[state.editIndex] = action.payload;
+      } else {
+        state.submittedUser.push(action.payload);
+      }
+      state.isToggleModal = false;
     },
   },
 });
@@ -47,7 +70,7 @@ export const {
   openModal,
   closeModal,
   add,
-  edit,
+  toggleEdit,
 } = userManagementSlice.actions;
 
 export default userManagementSlice.reducer;

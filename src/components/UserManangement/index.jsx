@@ -5,7 +5,7 @@ import {
   openModal,
   closeModal,
   handleSubmitUser,
-  edit,
+  toggleEdit,
   add,
 } from "../../features/user-management/userManagementSlice";
 
@@ -32,9 +32,9 @@ export default function UserManagement() {
     dispatch(add());
   };
 
-  const handleEdit = () => {
+  const handleEdit = (index) => {
     dispatch(openModal());
-    dispatch(edit());
+    dispatch(toggleEdit(index));
   };
 
   const handleSubmit = (e) => {
@@ -99,7 +99,7 @@ export default function UserManagement() {
                   </button>
                   <button
                     className="text-blue-600 hover:underline"
-                    onClick={handleEdit}
+                    onClick={() => handleEdit(index)}
                   >
                     Edit
                   </button>
