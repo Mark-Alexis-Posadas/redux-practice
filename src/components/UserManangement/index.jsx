@@ -9,6 +9,7 @@ import {
   add,
   toggleDelete,
 } from "../../features/user-management/userManagementSlice";
+import ConfirmationPopUp from "./ConfirmationPopUp";
 
 export default function UserManagement() {
   const dispatch = useDispatch();
@@ -45,6 +46,16 @@ export default function UserManagement() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      name.trim() === "" ||
+      email.trim() === "" ||
+      role.trim() === "" ||
+      phoneNumber.trim() === "" ||
+      address.trim() === ""
+    ) {
+      alert("please filled out the fileds");
+      return;
+    }
     dispatch(closeModal());
     dispatch(handleSubmitUser({ name, email, role, phoneNumber, address }));
   };
@@ -87,37 +98,43 @@ export default function UserManagement() {
           </tr>
         </thead>
         <tbody>
-          {submittedUser.map((item, index) => (
-            <tr
-              className={`${
-                editIndex === index ? "border-2 border-green-600" : ""
-              } odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700`}
-              key={index}
-            >
-              <td className="px-6 py-4">{index}</td>
-              <td className="px-6 py-4">{item.name}</td>
-              <td className="px-6 py-4">{item.email}</td>
-              <td className="px-6 py-4">{item.role}</td>
-              <td className="px-6 py-4">{item.phoneNumber}</td>
-              <td className="px-6 py-4">{item.address}</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center gap-3">
-                  <button
-                    className="text-red-600 hover:underline"
-                    onClick={() => handleDelete(index)}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="text-blue-600 hover:underline"
-                    onClick={() => handleEdit(index)}
-                  >
-                    Edit
-                  </button>
-                </div>
-              </td>
+          {submittedUser.length === 0 ? (
+            <tr>
+              <p>Add Items</p>
             </tr>
-          ))}
+          ) : (
+            submittedUser.map((item, index) => (
+              <tr
+                className={`${
+                  editIndex === index ? "border-2 border-green-600" : ""
+                } odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700`}
+                key={index}
+              >
+                <td className="px-6 py-4">{index}</td>
+                <td className="px-6 py-4">{item.name}</td>
+                <td className="px-6 py-4">{item.email}</td>
+                <td className="px-6 py-4">{item.role}</td>
+                <td className="px-6 py-4">{item.phoneNumber}</td>
+                <td className="px-6 py-4">{item.address}</td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <button
+                      className="text-red-600 hover:underline"
+                      onClick={() => handleDelete(index)}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="text-blue-600 hover:underline"
+                      onClick={() => handleEdit(index)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 
@@ -135,6 +152,7 @@ export default function UserManagement() {
           isEditing={isEditing}
         />
       )}
+      <ConfirmationPopUp />
     </div>
   );
 }
