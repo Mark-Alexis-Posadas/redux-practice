@@ -49,7 +49,7 @@ export default function UserManagement() {
   };
 
   return (
-    <div className="max-w-[1200px] m-auto">
+    <div className="max-w-[1200px] m-auto font-raleway">
       <div className="flex items-center justify-between mb-5">
         <h1 className="font-bold text-2xl">User Management</h1>
         <button

@@ -32,59 +32,61 @@ export default function Modal({
         </div>
 
         <div className="flex flex-col mb-3">
-          <label className="text-sm text-gray-400 block">Name</label>
+          <label className="text-sm text-gray-400 block mb-2">Name</label>
           <input
             onChange={handleInputChange}
             name="name"
             value={name}
             type="text"
-            className="p-2 rounded text-gray-400 bg-slate-100"
+            className="p-2 rounded text-gray-400 bg-slate-100 text-sm"
             placeholder="Name"
           />
         </div>
         <div className="flex flex-col mb-3">
-          <label className="text-sm text-gray-400 block">Email</label>
+          <label className="text-sm text-gray-400 block mb-2">Email</label>
           <input
             onChange={handleInputChange}
             name="email"
             value={email}
             type="email"
-            className="p-2 rounded text-gray-400 bg-slate-100"
+            className="p-2 rounded text-gray-400 bg-slate-100 text-sm"
             placeholder="Email"
           />
         </div>
 
         <div className="flex flex-col mb-3">
-          <label className="text-sm text-gray-400 block">Role</label>
+          <label className="text-sm text-gray-400 block mb-2">Role</label>
           <select
             onChange={handleInputChange}
             name="role"
             value={role}
-            className="p-2 rounded text-gray-400 bg-slate-100"
+            className="p-2 rounded text-gray-400 bg-slate-100 text-sm"
           >
             <option value="user">User</option>
             <option value="admin">Admin</option>
           </select>
         </div>
         <div className="flex flex-col mb-3">
-          <label className="text-sm text-gray-400 block">Phone Number</label>
+          <label className="text-sm text-gray-400 block mb-2">
+            Phone Number
+          </label>
           <input
             onChange={handleInputChange}
             name="phoneNumber"
             value={phoneNumber}
             type="text"
-            className="p-2 rounded text-gray-400 bg-slate-100"
+            className="p-2 rounded text-gray-400 bg-slate-100 text-sm"
             placeholder="090...."
           />
         </div>
         <div className="flex flex-col mb-3">
-          <label className="text-sm text-gray-400 block">Address</label>
+          <label className="text-sm text-gray-400 block mb-2">Address</label>
           <input
             onChange={handleInputChange}
             name="address"
             value={address}
             type="text"
-            className="p-2 rounded text-gray-400 bg-slate-100"
+            className="p-2 rounded text-gray-400 bg-slate-100 text-sm"
             placeholder="98,Makati City"
           />
         </div>
