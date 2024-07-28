@@ -92,7 +92,7 @@ export default function Modal({
           type="submit"
           className="text-white p-2 rounded bg-blue-600 w-full"
         >
-          Submit
+          {isEditing ? "Update" : "submit"}
         </button>
       </form>
     </div>

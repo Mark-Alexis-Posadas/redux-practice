@@ -7,6 +7,7 @@ import {
   handleSubmitUser,
   toggleEdit,
   add,
+  toggleDelete,
 } from "../../features/user-management/userManagementSlice";
 
 export default function UserManagement() {
@@ -37,6 +38,10 @@ export default function UserManagement() {
     dispatch(toggleEdit(index));
   };
 
+  const handleDelete = (index) => {
+    dispatch(toggleDelete(index));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(closeModal());
@@ -44,11 +49,11 @@ export default function UserManagement() {
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
+    <div className="max-w-[1200px] m-auto">
+      <div className="flex items-center justify-between mb-5">
         <h1 className="font-bold text-2xl">User Management</h1>
         <button
-          className="border border-slate-300 text-gray-400 p-2 rounded"
+          className="border bg-blue-600 text-white p-2 rounded"
           onClick={handleAdd}
         >
           Add User
@@ -94,7 +99,10 @@ export default function UserManagement() {
               <td className="px-6 py-4">{item.address}</td>
               <td className="px-6 py-4">
                 <div className="flex items-center gap-3">
-                  <button className="text-red-600 hover:underline">
+                  <button
+                    className="text-red-600 hover:underline"
+                    onClick={() => handleDelete(index)}
+                  >
                     Delete
                   </button>
                   <button

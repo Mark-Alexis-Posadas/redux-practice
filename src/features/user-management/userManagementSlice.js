@@ -48,10 +48,13 @@ export const userManagementSlice = createSlice({
       state.address = userToEdit.address;
     },
 
-    // handleEdit: (state, action) => {
-    //   const { index, newValue } = action.payload;
-    //   state.submittedUser[index] = newValue;
-    // },
+    toggleDelete: (state, action) => {
+      const index = action.payload;
+
+      state.submittedUser = state.submittedUser.filter(
+        (_, idx) => idx !== index
+      );
+    },
 
     handleSubmitUser: (state, action) => {
       if (state.isEditing) {
@@ -71,6 +74,7 @@ export const {
   closeModal,
   add,
   toggleEdit,
+  toggleDelete,
 } = userManagementSlice.actions;
 
 export default userManagementSlice.reducer;
