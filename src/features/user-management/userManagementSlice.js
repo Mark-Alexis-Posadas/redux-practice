@@ -7,6 +7,7 @@ const initialState = {
   phoneNumber: "",
   address: "",
   isToggleModal: false,
+  isEditing: false,
   submittedUser: [],
 };
 
@@ -25,13 +26,28 @@ export const userManagementSlice = createSlice({
       state.isToggleModal = false;
     },
 
+    add: (state) => {
+      state.isEditing = false;
+    },
+
+    edit: (state) => {
+      state.isEditing = true;
+      console.log(state.isEditing);
+    },
+
     handleSubmitUser: (state, action) => {
       state.submittedUser.push(action.payload);
     },
   },
 });
 
-export const { handleChange, handleSubmitUser, openModal, closeModal } =
-  userManagementSlice.actions;
+export const {
+  handleChange,
+  handleSubmitUser,
+  openModal,
+  closeModal,
+  add,
+  edit,
+} = userManagementSlice.actions;
 
 export default userManagementSlice.reducer;

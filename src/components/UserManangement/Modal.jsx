@@ -11,6 +11,7 @@ export default function Modal({
   address,
   handleInputChange,
   handleSubmit,
+  isEditing,
 }) {
   return (
     <div className="fixed flex items-center justify-center bg-[rgba(0,0,0,0.4)] w-full h-full left-0 top-0">
@@ -19,7 +20,9 @@ export default function Modal({
         onSubmit={handleSubmit}
       >
         <div className="flex items-center justify-between mb-5">
-          <h1 className="text-2xl font-bold">Add user</h1>
+          <h1 className="text-2xl font-bold">
+            {isEditing ? "Edit User" : "Add User"}
+          </h1>
           <button
             className="border border-slate-400 rounded-full p-2 w-10 h-10 text-xl flex items-center justify-center"
             onClick={() => dispatch(closeModal())}
