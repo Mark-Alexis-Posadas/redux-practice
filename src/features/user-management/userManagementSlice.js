@@ -9,6 +9,7 @@ const initialState = {
   editIndex: null,
   isToggleModal: false,
   isEditing: false,
+  isConfirmation: { index: null, show: false },
   submittedUser: [],
 };
 
@@ -20,6 +21,11 @@ export const userManagementSlice = createSlice({
       const { name, value } = action.payload;
       state[name] = value;
     },
+
+    openConfirmation: (state) => {
+      state.isConfirmation.show = true;
+    },
+
     openModal: (state) => {
       state.isToggleModal = true;
     },
@@ -50,11 +56,20 @@ export const userManagementSlice = createSlice({
     },
 
     toggleDelete: (state, action) => {
-      const index = action.payload;
+      const idx = action.payload;
+      state.isConfirmation.show = true;
+      state.isConfirmation.index = idx;
+    },
 
-      state.submittedUser = state.submittedUser.filter(
-        (_, idx) => idx !== index
-      );
+    handleDeleteYes: (state) => {
+      if (state.isConfirmation.index !== null && state.isConfirmation.show) {
+        state.submittedUser = state.submittedUser.filter(
+          (_, idx) => idx !== state.isConfirmation.index
+        );
+      }
+
+      state.isConfirmation.show = false;
+      state.isConfirmation.index = null;
     },
 
     handleSubmitUser: (state, action) => {
@@ -71,6 +86,7 @@ export const userManagementSlice = createSlice({
 export const {
   handleChange,
   handleSubmitUser,
+  handleDeleteYes,
   openModal,
   closeModal,
   add,
