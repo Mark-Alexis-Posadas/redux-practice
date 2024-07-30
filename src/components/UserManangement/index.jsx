@@ -4,6 +4,7 @@ import {
   handleChange,
   openModal,
   closeModal,
+  closeConfirmationModal,
   handleSubmitUser,
   toggleEdit,
   add,
@@ -154,7 +155,11 @@ export default function UserManagement() {
         />
       )}
       {isConfirmation.show && (
-        <ConfirmationPopUp handleConfirmDelete={handleConfirmDelete} />
+        <ConfirmationPopUp
+          handleConfirmDelete={handleConfirmDelete}
+          closeConfirmationModal={closeConfirmationModal}
+          dispatch={dispatch}
+        />
       )}
     </div>
   );

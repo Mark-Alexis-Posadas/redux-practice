@@ -55,6 +55,10 @@ export const userManagementSlice = createSlice({
       state.address = userToEdit.address;
     },
 
+    closeConfirmationModal: (state) => {
+      state.isConfirmation.show = false;
+    },
+
     toggleDelete: (state, action) => {
       const idx = action.payload;
       state.isConfirmation.show = true;
@@ -89,6 +93,7 @@ export const {
   handleDeleteYes,
   openModal,
   closeModal,
+  closeConfirmationModal,
   add,
   toggleEdit,
   toggleDelete,
