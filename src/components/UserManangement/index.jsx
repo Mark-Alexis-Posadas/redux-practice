@@ -54,6 +54,7 @@ export default function UserManagement() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (
       name.trim() === "" ||
       email.trim() === "" ||

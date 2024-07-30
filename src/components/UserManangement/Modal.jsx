@@ -88,14 +88,15 @@ export default function Modal({
             type="text"
             className="p-2 rounded text-gray-400 bg-slate-100 text-sm"
             placeholder="98,Makati City"
+            required
           />
         </div>
-        <button
-          type="submit"
-          className="text-white p-2 rounded bg-blue-600 w-full"
-        >
-          {isEditing ? "Update" : "submit"}
-        </button>
+        <div className="flex items-center gap-3">
+          <button type="submit" className="text-white p-2 rounded bg-blue-600 ">
+            {isEditing ? "Update" : "submit"}
+          </button>
+          <button className="text-white p-2 rounded bg-red-600">Cancel</button>
+        </div>
       </form>
     </div>
   );

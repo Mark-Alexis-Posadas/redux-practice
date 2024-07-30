@@ -1,17 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  name: "",
-  email: "",
-  role: "",
-  phoneNumber: "",
-  address: "",
-  editIndex: null,
-  isToggleModal: false,
-  isEditing: false,
-  isConfirmation: { index: null, show: false },
-  submittedUser: [],
+const loadFromLocalStorage = () => {
+  const savedData = localStorage.getItem("userManagementState");
+  return savedData
+    ? JSON.parse(savedData)
+    : {
+        name: "",
+        email: "",
+        role: "",
+        phoneNumber: "",
+        address: "",
+        editIndex: null,
+        isToggleModal: false,
+        isEditing: false,
+        isConfirmation: { index: null, show: false },
+        submittedUser: [],
+      };
 };
+const initialState = loadFromLocalStorage();
 
 export const userManagementSlice = createSlice({
   name: "userManagement",
@@ -20,18 +26,22 @@ export const userManagementSlice = createSlice({
     handleChange: (state, action) => {
       const { name, value } = action.payload;
       state[name] = value;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     openConfirmation: (state) => {
       state.isConfirmation.show = true;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     openModal: (state) => {
       state.isToggleModal = true;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
     closeModal: (state) => {
       state.isToggleModal = false;
       state.editIndex = null;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     add: (state) => {
@@ -41,6 +51,7 @@ export const userManagementSlice = createSlice({
       state.role = "";
       state.phoneNumber = "";
       state.address = "";
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     toggleEdit: (state, action) => {
@@ -53,16 +64,20 @@ export const userManagementSlice = createSlice({
       state.role = userToEdit.role;
       state.phoneNumber = userToEdit.phoneNumber;
       state.address = userToEdit.address;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     closeConfirmationModal: (state) => {
       state.isConfirmation.show = false;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     toggleDelete: (state, action) => {
       const idx = action.payload;
       state.isConfirmation.show = true;
       state.isConfirmation.index = idx;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     handleDeleteYes: (state) => {
@@ -74,6 +89,7 @@ export const userManagementSlice = createSlice({
 
       state.isConfirmation.show = false;
       state.isConfirmation.index = null;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     handleSubmitUser: (state, action) => {
@@ -83,6 +99,7 @@ export const userManagementSlice = createSlice({
         state.submittedUser.push(action.payload);
       }
       state.isToggleModal = false;
+      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
   },
 });
@@ -97,6 +114,7 @@ export const {
   add,
   toggleEdit,
   toggleDelete,
+  setFormErrors,
 } = userManagementSlice.actions;
 
 export default userManagementSlice.reducer;
