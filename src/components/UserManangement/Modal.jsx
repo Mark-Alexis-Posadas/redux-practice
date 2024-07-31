@@ -14,7 +14,7 @@ export default function Modal({
   isEditing,
 }) {
   return (
-    <div className="fixed flex items-center justify-center bg-[rgba(0,0,0,0.4)] w-full h-full left-0 top-0">
+    <div className="fixed flex items-center justify-center bg-[rgba(0,0,0,0.4)] w-full h-full left-0 top-0 p-10 md:p-0">
       <form
         className="bg-white p-3 rounded shadow-md w-[1100px]"
         onSubmit={handleSubmit}

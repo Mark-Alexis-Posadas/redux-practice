@@ -44,7 +44,7 @@ export const userManagementSlice = createSlice({
       localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
-    add: (state) => {
+    toggleAdd: (state) => {
       state.isEditing = false;
       state.name = "";
       state.email = "";
@@ -77,7 +77,6 @@ export const userManagementSlice = createSlice({
       state.isConfirmation.show = true;
       state.isConfirmation.index = idx;
       localStorage.setItem("userManagementState", JSON.stringify(state));
-      localStorage.setItem("userManagementState", JSON.stringify(state));
     },
 
     handleDeleteYes: (state) => {
@@ -93,12 +92,16 @@ export const userManagementSlice = createSlice({
     },
 
     handleSubmitUser: (state, action) => {
-      if (state.isEditing) {
-        state.submittedUser[state.editIndex] = action.payload;
+      const { index, newText } = action.payload;
+      if (index !== undefined) {
+        // Editing existing user
+        state.submittedUser[index] = newText;
       } else {
-        state.submittedUser.push(action.payload);
+        // Adding new user
+        state.submittedUser.push(newText);
       }
       state.isToggleModal = false;
+      state.editIndex = null;
       localStorage.setItem("userManagementState", JSON.stringify(state));
     },
   },
@@ -111,7 +114,7 @@ export const {
   openModal,
   closeModal,
   closeConfirmationModal,
-  add,
+  toggleAdd,
   toggleEdit,
   toggleDelete,
   setFormErrors,

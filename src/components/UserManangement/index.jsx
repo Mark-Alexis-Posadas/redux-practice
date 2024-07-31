@@ -7,7 +7,7 @@ import {
   closeConfirmationModal,
   handleSubmitUser,
   toggleEdit,
-  add,
+  toggleAdd,
   toggleDelete,
   handleDeleteYes,
 } from "../../features/user-management/userManagementSlice";
@@ -35,10 +35,11 @@ export default function UserManagement() {
 
   const handleAdd = () => {
     dispatch(openModal());
-    dispatch(add());
+    dispatch(toggleAdd());
   };
 
   const handleEdit = (index) => {
+    console.log(isEditing);
     dispatch(openModal());
     dispatch(toggleEdit(index));
   };
@@ -49,24 +50,38 @@ export default function UserManagement() {
 
   const handleConfirmDelete = () => {
     dispatch(handleDeleteYes());
-    console.log("pasok");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
-      name.trim() === "" ||
-      email.trim() === "" ||
-      role.trim() === "" ||
-      phoneNumber.trim() === "" ||
-      address.trim() === ""
+      !name.trim() ||
+      !email.trim() ||
+      !role.trim() ||
+      !phoneNumber.trim() ||
+      !address.trim()
     ) {
-      alert("please filled out the fileds");
+      alert("Please fill out all fields.");
       return;
     }
+
+    if (isEditing) {
+      dispatch(
+        handleSubmitUser({
+          index: editIndex,
+          newText: { name, email, role, phoneNumber, address },
+        })
+      );
+    } else {
+      dispatch(
+        handleSubmitUser({
+          newText: { name, email, role, phoneNumber, address },
+        })
+      );
+    }
+
     dispatch(closeModal());
-    dispatch(handleSubmitUser({ name, email, role, phoneNumber, address }));
   };
 
   return (
@@ -80,66 +95,68 @@ export default function UserManagement() {
           Add User
         </button>
       </div>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-              ID
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Role
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Phone Number
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Address
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {submittedUser.map((item, index) => (
-            <tr
-              className={`${
-                editIndex === index ? "border-2 border-green-600" : ""
-              } odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700`}
-              key={index}
-            >
-              <td className="px-6 py-4">{index}</td>
-              <td className="px-6 py-4">{item.name}</td>
-              <td className="px-6 py-4">{item.email}</td>
-              <td className="px-6 py-4">{item.role}</td>
-              <td className="px-6 py-4">{item.phoneNumber}</td>
-              <td className="px-6 py-4">{item.address}</td>
-              <td className="px-6 py-4">
-                <div className="flex items-center gap-3">
-                  <button
-                    className="text-red-600 hover:underline"
-                    onClick={() => handleToggleDelete(index)}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="text-blue-600 hover:underline"
-                    onClick={() => handleEdit(index)}
-                  >
-                    Edit
-                  </button>
-                </div>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                ID
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Role
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Phone Number
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Address
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {submittedUser.map((item, index) => (
+              <tr
+                className={`${
+                  editIndex === index ? "border-2 border-green-600" : ""
+                } odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700`}
+                key={index}
+              >
+                <td className="px-6 py-4">{index}</td>
+                <td className="px-6 py-4">{item.name}</td>
+                <td className="px-6 py-4">{item.email}</td>
+                <td className="px-6 py-4">{item.role}</td>
+                <td className="px-6 py-4">{item.phoneNumber}</td>
+                <td className="px-6 py-4">{item.address}</td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <button
+                      className="text-red-600 hover:underline"
+                      onClick={() => handleToggleDelete(index)}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="text-blue-600 hover:underline"
+                      onClick={() => handleEdit(index)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {isToggleModal && (
         <Modal

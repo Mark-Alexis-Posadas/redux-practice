@@ -74,7 +74,7 @@ export default function Todo() {
 
   return (
     <div className="w-[700px] p-10 bg-gray-50]">
-      <h1 className="font-bold text-xl mb-10">Todo list app reducer</h1>
+      <h1 className="font-bold text-xl mb-10">Todo list app redux</h1>
       {existTodo && <p className="my-3 text-red-300">Todo already exist</p>}
 
       <div className="flex items-center gap-3">

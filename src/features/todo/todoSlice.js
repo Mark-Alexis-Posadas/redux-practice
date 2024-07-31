@@ -20,13 +20,6 @@ export const todoSlice = createSlice({
       state.editIndex = action.payload.index;
     },
 
-    submitEditTodo: (state, action) => {
-      const { index, newText } = action.payload;
-      state.todos[index] = newText;
-      state.editIndex = null;
-      state.isModalShow = false;
-    },
-
     toggleModalEdit: (state) => {
       state.isModalShow = true;
     },
@@ -38,6 +31,13 @@ export const todoSlice = createSlice({
 
     checkTodoExistence: (state, action) => {
       state.isExist = state.todos.includes(action.payload);
+    },
+
+    submitEditTodo: (state, action) => {
+      const { index, newText } = action.payload;
+      state.todos[index] = newText;
+      state.editIndex = null;
+      state.isModalShow = false;
     },
   },
 });
