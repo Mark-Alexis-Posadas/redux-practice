@@ -1,9 +1,9 @@
-import UserManagement from "./components/UserManangement";
+import { DataFetching } from "./components/DataFetching/DataFetching";
 
 const App = () => {
   return (
     <div className="p-10">
-      <UserManagement />{" "}
+      <DataFetching />
     </div>
   );
 };
